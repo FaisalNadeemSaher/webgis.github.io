@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cahpter 4</title>
+</head>
+
+<body>
+    <h1>بسم اللہ الرحمن الرحیم</h1>
+
+    <h1 id="hh" ; style="color:white ; background-color:navy; width:35% ; position: relative; padding: 5px">BISP Map:
+        Data4Pakistan</h1>
+
+    <p id="data">The map showing the NSCR data.</p>
+    <p id="data1"></p>
+    <hr>
+    <hr>
+    <br>
+    <input type="button" value="Change Text of Title" id="addBg">
+
+    <hr>
+    <h1>Image Change Viewer</h1>
+
+    <img src="leaflet - Copy.png" alt="image1" width="250px" height=200px id="image1"><br><br>
+
+    <input type="button" value="Yellow Image" id="sp">
+    <input type="button" value="Blanck Image" id="np">
+
+    <hr>
+    <p id="p1">Enter this paragraph.</p>
+    <p id="demo"></p>
+    <hr>
+    <input type="range" min="0" max="100" id="mySlider" value="25">
+    <p id="sliderV"></p>
+    <hr>
+    <p>Move Mouse Over the Image to Get Position</p>
+    <p id="docp"></p>
+    <hr>
+    <h2>To Check Target Property of Click</h2>
+    <h3 id="tp" style="color:green"></h3>
+    <hr>
+    <h1>Adding Data Dynamically</h1>
+    <ul id="myData"></ul>
+    <hr>
+    <h1>Calculator</h1>
+
+    <input type="number" id="num1" min="0" max="100" value="25">
+    <input type="number" id="num2" min="0" max="100" value="5"> <br><br>
+    <input type="button" id="multiply" value="Multiply!">
+    <input type="button" id="divide" value="Divide!"> <br> <br>
+    <input type="button" id="clear" value="Clear!">
+    <h3 id="result"></h3>
+    <script>
+
+        // ---------------------------- Change Element Text -------------------
+        function changeBg() {
+            document.getElementById("hh").innerHTML = "Title of the Page has been Clicked!";
+            document.getElementById("hh").style.color = "yellow";
+        }
+        document.getElementById("addBg").addEventListener("click", changeBg);
+
+        // ----------------------------Change Image Source ----------------------
+
+        function yi() {
+            document.getElementById("image1").src = "WallPaper 2.png";
+        };
+
+        function bi() {
+            document.getElementById("image1").src = "WallPaper.png";
+        };
+
+        document.getElementById("sp").addEventListener("click", yi);
+        document.getElementById("np").addEventListener("click", bi);
+
+        // ------------------------ Multiple Events on single element----------------
+
+        let el = document.getElementById("p1");
+        el.addEventListener("mouseover", function () {
+            document.getElementById("demo").innerHTML = ("You entered p1!");
+        });
+        el.addEventListener("mouseout", function () {
+            document.getElementById("demo").innerHTML = ("You left p1!");
+        });
+        // ----------------------Slider Value Function --------------
+        var x = document.getElementById("mySlider").value;
+        document.getElementById("sliderV").innerHTML = "Slider Value: " + x;
+
+        // -------------------------- Mosue Position -----------------
+
+        let ele = document.getElementById("docp");
+        document.getElementById("image1").addEventListener("mousemove", function (e) {
+            ele.innerHTML = "Postion X: " + e.pageX + ",Position Y: " + e.pageY;
+        })
+        // ----------------- To Identify Target ---------------
+        document.addEventListener("click", function (e) {
+            document.getElementById("tp").innerHTML = "Target Element and Taxt: " + e.target.innerHTML;
+        })
+
+        // ---------------- Adding Content Dynamically --------------
+        let data = [
+            "Iris atrofusca",
+            "Iris atropurpurea",
+            "Iris bismarckiana",
+            "Iris haynei",
+            "Iris hermona",
+            "Iris lortetii",
+            "Iris mariae",
+            "Iris petrana"
+        ];
+        let myTaxt = ""
+        data.forEach(function (e) {
+            myTaxt += "<li>" + e + "</li>";
+        });
+        document.getElementById("myData").innerHTML = myTaxt;
+
+        // ------------------ Calculator -------------------
+        console.log(typeof (num1.value));
+        let myresult = ""
+        document.getElementById("multiply").addEventListener("click", function () {
+            // document.getElementById("result").innerHTML = "Result is: " + Number(num1.value) * Number(num2.value);
+
+            myresult += "Result is: " + Number(num1.value) * Number(num2.value) + "<br>";
+            document.getElementById("result").innerHTML = myresult;
+        });
+        document.getElementById("divide").addEventListener("click", function () {
+            myresult += "Result is: " + Number(num1.value) / Number(num2.value) + "<br>";
+            document.getElementById("result").innerHTML = myresult;
+        })
+        document.getElementById("clear").addEventListener("click", function () {
+            // document.getElementById("result").innerHTML = "";
+            result.innerHTML = "";
+        });
+
+    </script>
+</body>
+
+</html>
